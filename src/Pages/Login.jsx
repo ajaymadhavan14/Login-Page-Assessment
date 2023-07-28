@@ -3,6 +3,7 @@ import Modal from "react-modal";
 import { message } from "antd";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import BaseURL from "../Api/Api";
 function Login() {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -25,7 +26,7 @@ function Login() {
       if (regEmail.test(formData?.email)) {
         if (formData?.password.length >= 6) {
           axios
-            .post("http://localhost:5000/api/data", formData)
+            .post(`${BaseURL}/api/data`, formData)
             .then((response) => {
               console.log(response.data);
               if (response?.data?.status == "success") {
